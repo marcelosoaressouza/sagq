@@ -1,0 +1,191 @@
+.grid-view-loading
+{
+	background:url("../images/loading.gif") no-repeat;
+}
+
+.grid-view table.items
+{
+	background: white;
+	border-collapse: collapse;
+	width: 100%;        
+	border: 1px #D0E3EF solid;
+
+}
+
+.grid-view table.items th, .grid-view table.items td
+{
+	font-size: 14px;
+	border: 1px white solid;
+	padding: 8px 8px 8px 8px;
+        text-align: center;
+
+}
+
+.grid-view table.items th
+{
+	color: white;
+	background: url("../images/bg.gif") repeat-x scroll left top white;
+	text-align: center;
+}
+
+.grid-view table.items th a
+{
+	color: #EEE;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.grid-view table.items th a:hover
+{
+	color: #FFF;
+}
+
+.grid-view table.items th a.asc
+{
+	background:url("../images/up.gif") right center no-repeat;
+	padding-right: 10px;
+}
+
+.grid-view table.items th a.desc
+{
+	background:url("../images/down.gif") right center no-repeat;
+	padding-right: 10px;
+}
+
+.grid-view table.items tr.even
+{
+	background: #F8F8F8;
+}
+
+.grid-view table.items tr.odd
+{
+	background: #7DBBDB;
+        font-size: 16px;
+}
+
+.grid-view table.items tr.selected
+{
+	/* background: #FF1919; */
+
+}
+
+.grid-view table.items tr:hover
+{
+	background: #FF9F19;
+}
+
+.grid-view .link-column img
+{
+	border: 0;
+}
+
+.grid-view .button-column
+{
+	text-align: center;
+
+}
+
+.grid-view .button-column img
+{
+	border: 0;
+        padding: 2px;
+}
+
+.grid-view .checkbox-column
+{
+	width: 15px;
+}
+
+.grid-view .summary
+{
+	margin: 0 0 5px 0;
+	text-align: right;
+}
+
+.grid-view .pager
+{
+	margin: 5px 0 0 0;
+	text-align: right;
+}
+
+.grid-view .empty
+{
+	font-style: italic;
+}
+
+.grid-view .filters input,
+.grid-view .filters select
+{
+	width: 100%;
+	border: 1px solid #ccc;
+}
+
+/* Detalhes do Dado */
+
+/* Modificado */
+table.detail-view tr.odd
+{
+	background: #FFA968;
+}
+
+table.detail-view .null
+{
+	color: pink;
+}
+
+table.detail-view
+{
+	background: white;
+	border-collapse: collapse;
+	width: 100%;
+	margin: 0;
+}
+
+table.detail-view th, table.detail-view td
+{
+	font-size: 0.9em;
+	border: 1px white solid;
+	padding: 0.3em 0.6em;
+	vertical-align: top;
+}
+
+table.detail-view th
+{
+	text-align: right;
+	width: 160px;
+}
+
+
+
+table.detail-view tr.even
+{
+	background: #F8F8F8;
+}
+
+table.detail-view tr.odd th
+{
+}
+
+table.detail-view tr.even th
+{
+}
+
+/*
+.list-view .sorter a.asc {
+    background: url("up.gif") no-repeat scroll right center transparent;
+}
+
+.list-view .sorter a.desc {
+    background: url("down.gif") no-repeat scroll right center transparent; 
+}
+
+.sorter {
+    float: right;
+    min-width:  280px;
+    max-width:  280px;
+    min-height: 20px;
+    max-height: 20px;
+    background: url("down.gif") no-repeat scroll right center transparent; 
+
+}
+*/

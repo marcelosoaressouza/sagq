@@ -1,0 +1,95 @@
+#holder {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border: solid 1px #333;
+}
+
+.processes_options {
+    min-width: 200px;
+    float: inherit;
+}
+
+.processes_options a{
+    font-size: 11px;
+    font-weight: bolder;
+    text-decoration: none;
+    color: #A12222;
+    padding: 5px;
+}
+
+.processes_attachments a {
+    font-size: 11px;
+    font-weight: bolder;
+    text-decoration: none;
+    color: #A12222;
+    
+}
+
+.process_options {
+    float: right;
+}
+.process_title {
+    font-family:"DejaVu Sans", Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    color:#3C78A7;
+
+}
+
+.process_title a {
+    color:#3C78A7;
+    
+}
+
+.process_author {
+    padding-top: 10px;
+    font-size: 12px;    
+}
+
+.process_content {
+    padding-top: 5px;
+    width: 95%;
+    border-right: #ddd 1px solid;
+    padding-right: 15px;
+}
+
+.process_options a {
+    font-size: 11px;
+    font-weight: bolder;
+    text-decoration: none;
+    color: #A12222;
+
+}
+
+.search-button {
+    float: right;
+}
+
+.comment-button {
+ 
+}    
+
+.process_not_published {
+    color: #A12222;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.requirement_info {
+    font-size: 12px;
+    font-weight: 800;
+    
+}
+
+.li-requirement {
+    list-style-type: none;
+    background: url(/images/icon-requirements.png) no-repeat left;
+    padding-left: 1em;
+
+}
+
+.li-processes {
+    list-style-type: none;
+    background: url(/images/icon-processes.png) no-repeat left;
+    padding-left: 1em;
+
+}
