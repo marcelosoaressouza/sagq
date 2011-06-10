@@ -99,7 +99,7 @@ Raphael.fn.connection = function (obj1, obj2, line, bg) {
         $requirement_info = '('.count($model->requirements).') '.Yii::t('sagq', 'requirements');
     }
         
-    $flowchart .= 'r.text('.($x + ($size / 2)).','.($y + 40).', "'.Yii::app()->CleanHTML->cleanAll($model->title, 64).'\n'.$process_info.'\n'.$requirement_info.'").attr({title: "'.$model->title.'", href: "/process/'.$model->id.'", class: "box"}), ';
+    $flowchart .= 'r.text('.($x + ($size / 2)).','.($y + 40).', "'.Yii::app()->CleanHTML->cleanAll($model->title, 64).'\n'.$process_info.'\n'.$requirement_info.'").attr({title: "'.$model->title.'", href: "/process/'.$model->id.'", class: "box", font: "12px Fontin-Sans, Arial"}), ';
     
     if (!empty($model->processes))
     {
@@ -113,7 +113,7 @@ Raphael.fn.connection = function (obj1, obj2, line, bg) {
             }
             
             $flowchart .= 'r.rect('.($x).', '.($y + $j).', '.($size / 2).', 80, 10).attr({title: "'.$process->title.'", stroke: "#000", fill: "#F9BC0A", href: "/process/'.$process->id.'"}), ';
-            $flowchart .= 'r.text('.($x + ($size / 2 / 2)).','.($y + $j + 40).', "'.Yii::app()->CleanHTML->cleanAll($process->title, 32).'\n'.$requirement_info.'").attr({title: "'.$process->title.'", href: "/process/'.$process->id.'"}), ';
+            $flowchart .= 'r.text('.($x + ($size / 2 / 2)).','.($y + $j + 40).', "'.Yii::app()->CleanHTML->cleanAll($process->title, 32).'\n'.$requirement_info.'").attr({font: "12px Fontin-Sans, Arial", title: "'.$process->title.'", href: "/process/'.$process->id.'"}), ';
             
             $j = $j + 120;
         }
