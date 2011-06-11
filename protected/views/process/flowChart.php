@@ -107,13 +107,15 @@ Raphael.fn.connection = function (obj1, obj2, line, bg) {
         
         foreach($model->processes as $process)
         {
+            $requirement_child_info = '';
+            
             if (count($process->requirements) > 0) 
             {
-                $requirement_info = '('.count($process->requirements).') '.Yii::t('sagq', 'requirements');
+                $requirement_child_info = '('.count($process->requirements).') '.Yii::t('sagq', 'requirements');
             }
             
             $flowchart .= 'r.rect('.($x).', '.($y + $j).', '.($size / 2).', 80, 10).attr({title: "'.$process->title.'", stroke: "#000", fill: "#F9BC0A", href: "/process/'.$process->id.'"}), ';
-            $flowchart .= 'r.text('.($x + ($size / 2 / 2)).','.($y + $j + 40).', "'.Yii::app()->CleanHTML->cleanAll($process->title, 32).'\n'.$requirement_info.'").attr({font: "12px Fontin-Sans, Arial", title: "'.$process->title.'", href: "/process/'.$process->id.'"}), ';
+            $flowchart .= 'r.text('.($x + ($size / 2 / 2)).','.($y + $j + 40).', "'.Yii::app()->CleanHTML->cleanAll($process->title, 32).'\n'.$requirement_child_info.'").attr({font: "12px Fontin-Sans, Arial", title: "'.$process->title.'", href: "/process/'.$process->id.'"}), ';
             
             $j = $j + 120;
         }

@@ -20,5 +20,15 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+        
+	public $status = array (0 => 'New',
+                                1 => 'Accepted',
+                                2 => 'Rejected',
+                                3 => 'Revised');
+        
+	public $statusImage = array (0 => '<img src="/images/icon-new.png"      alt="New"      title="New"/>',
+                                     1 => '<img src="/images/icon-accepted.png" alt="Accepted" title="Accepted"/>',
+                                     2 => '<img src="/images/icon-rejected.png" alt="Rejected" title="Rejected"/>',
+                                     3 => '<img src="/images/icon-revised.png"  alt="Revised"  title="Revised"/>');
 
 }

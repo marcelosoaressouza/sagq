@@ -36,14 +36,15 @@ class User extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
 			array('username, password, profile', 'required'),
 			array('username, password', 'length', 'max'=>32),
 			array('profile', 'length', 'max'=>16),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
+                    
+			array('username', 'safe'),
+			array('password', 'safe'),
+			array('profile' , 'safe'),
+                    
 			array('id, username, password, profile', 'safe', 'on'=>'search'),
 		);
 	}
@@ -53,11 +54,7 @@ class User extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'processes' => array(self::HAS_MANY, 'Process', 'user_id'),
-		);
+		return array('processes' => array(self::HAS_MANY, 'Process', 'user_id'));
 	}
 
 	/**
@@ -66,10 +63,10 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'username' => 'Username',
-			'password' => 'Password',
-			'profile' => 'Profile',
+			'id'       => 'ID',
+			'username' => Yii::t('sagq', 'Username'),
+			'password' => Yii::t('sagq', 'Password'),
+			'profile'  => Yii::t('sagq', 'Profile'),
 		);
 	}
 
@@ -79,9 +76,6 @@ class User extends CActiveRecord
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
@@ -89,8 +83,6 @@ class User extends CActiveRecord
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('profile',$this->profile,true);
 
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
+		return new CActiveDataProvider(get_class($this), array('criteria'=>$criteria));
 	}
 }

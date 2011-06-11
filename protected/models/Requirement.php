@@ -4,11 +4,12 @@
  * This is the model class for table "requirement".
  *
  * The followings are the available columns in table 'requirement':
- * @property string $id
- * @property string $desc
- * @property integer $status
- * @property timestamp $created
- * @property string $process_id
+ * @property string    $id
+ * @property string    $desc
+ * @property integer   $status
+ * @property datetime  $created
+ * @property timestamp $updated
+ * @property string    $process_id
  *
  * The followings are the available model relations:
  * @property Process $process
@@ -40,16 +41,15 @@ class Requirement extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('process_id', 'required'),
+			array('process_id, status, created, updated, process_id', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
 			array('process_id', 'length', 'max'=>11),
+			array('process_id', 'safe'),
 			array('desc', 'safe'),
 			array('status', 'safe'),
 			array('created', 'safe'),
-			array('process_id', 'safe'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, desc, status, created, process_id', 'safe', 'on'=>'search'),
+			array('updated', 'safe'),
+			array('id, process_id, desc, status, created, updated', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,11 +58,9 @@ class Requirement extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
-                    'attachments' => array(self::HAS_MANY, 'Attachment', 'requirement_id'),
-                    'process' => array(self::BELONGS_TO, 'Process', 'process_id'),
+                    'attachments' => array(self::HAS_MANY  , 'Attachment', 'requirement_id'),
+                    'process'     => array(self::BELONGS_TO, 'Process'   , 'process_id'),
 		);
 	}
 
@@ -76,6 +74,7 @@ class Requirement extends CActiveRecord
 			'desc'       => Yii::t('sagq', 'Description'),
 			'status'     => Yii::t('sagq', 'Status'),
 			'created'    => Yii::t('sagq', 'Created'),
+			'updated'    => Yii::t('sagq', 'Updated'),
 			'process_id' => Yii::t('sagq', 'Process'),
 		);
 	}
@@ -86,15 +85,13 @@ class Requirement extends CActiveRecord
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('desc',$this->desc,true);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('created',$this->created);
+		$criteria->compare('updated',$this->updated);
 		$criteria->compare('process_id',$this->process_id,true);
 
 		return new CActiveDataProvider(get_class($this), array(

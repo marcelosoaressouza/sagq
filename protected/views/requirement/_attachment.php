@@ -2,7 +2,7 @@
     if (count($data->attachments) > 0)
     {
         echo '<div class="processes_attachments">';
-        echo '<b>Anexos ('.count($data->attachments).'): </b>';
+        echo '<b>'.Yii::t('sagq', 'Attachments').' ('.count($data->attachments).'): </b>';
         echo '<ul>';
         foreach ($data->attachments as $attachment)
         {
@@ -11,5 +11,9 @@
         }
         echo '</ul>';
         echo '</div>';
+    }
+    else
+    {
+        echo '<div class="requirement_info">'.Yii::t('sagq', 'No Attachments').'</div>';
     }
 ?>

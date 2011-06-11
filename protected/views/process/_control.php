@@ -1,7 +1,10 @@
+<!-- begin of _control.php -->
+
 <?php
 if(!Yii::app()->user->isGuest)
 {
     echo '<div class="processes_options">';
+    echo CHtml::link('<img src="/images/icon-add.png" title="'.Yii::t('sagq', 'Add New').'"/></a>' ,'/process/create/'.$data->id, array('class'=>'process-button'));
     echo CHtml::link('<img src="/images/icon-requirement.png" title="'.Yii::t('sagq', 'Add Requirement').'"/></a>' ,'/requirement/create/'.$data->id, array('class'=>'requirement-button'));
     echo CHtml::link('<img src="/images/icon-flowchart.png" title="'.Yii::t('sagq', 'Flowchart').'"/></a>' , '/process/flowChart/'.$data->id, array('class'=>'flowchart-button'));
     echo CHtml::link('<img src="/images/icon-edit.png" title="'.Yii::t('sagq', 'Update').'"/></a>'   ,'/process/update/'.$data->id, array('class'=>'edit-button'));
@@ -13,3 +16,5 @@ else
     echo '<br/>';        
 }
 ?>
+
+<!-- end of _control.php -->

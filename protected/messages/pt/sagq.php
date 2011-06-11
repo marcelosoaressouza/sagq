@@ -57,6 +57,9 @@ return array (
   'Attach' => 'Anexar',
   'Attachment' => 'Anexo',
   'Attachments' => 'Anexo(s)',
+  'No Attachment' => 'Sem Anexo',
+  'No Attachments' => 'Sem Anexo(s)',
   'File' => 'Arquivo',
+  'Has' => 'Possue',
 );
 

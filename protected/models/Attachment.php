@@ -7,8 +7,8 @@
  * @property string $id
  * @property string $desc
  * @property string $file
- * @property string $created
- * @property string $updated
+ * @property datetime $created
+ * @property timestamp $updated
  * @property string $requirement_id
  *
  * The followings are the available model relations:
@@ -38,13 +38,17 @@ class Attachment extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
-			array('created, requirement_id', 'required'),
-			array('file', 'length', 'max'=>256),
-			array('requirement_id', 'length', 'max'=>10),
-			array('desc, updated', 'safe'),
+			array('created, file, updated, requirement_id', 'required'),
+			array('file', 'length'  , 'max'=>256),
+			array('requirement_id'  , 'length', 'max'=>10),
+                    
+			array('desc'   , 'safe'),
+			array('file'   , 'safe'),
+			array('created', 'safe'),
+			array('updated', 'safe'),
+			array('requirement_id', 'safe'),
+                    
 			array('id, desc, file, created, updated, requirement_id', 'safe', 'on'=>'search'),
 		);
 	}
@@ -54,11 +58,7 @@ class Attachment extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'requirement' => array(self::BELONGS_TO, 'Requirement', 'requirement_id'),
-		);
+		return array('requirement' => array(self::BELONGS_TO, 'Requirement', 'requirement_id'));
 	}
 
 	/**
@@ -82,9 +82,6 @@ class Attachment extends CActiveRecord
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
@@ -94,8 +91,6 @@ class Attachment extends CActiveRecord
 		$criteria->compare('updated',$this->updated,true);
 		$criteria->compare('requirement_id',$this->requirement_id,true);
 
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
+		return new CActiveDataProvider(get_class($this), array('criteria'=>$criteria,));
 	}
 }

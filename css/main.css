@@ -1161,3 +1161,14 @@ hr {
 /*    border: 1px solid; */
     
 }
+
+
+.submit-button {
+    min-width: 100px;
+    min-height: 30px;
+    background: #D29696;
+    color: #000;
+    font-weight: 800;
+    border: 1px solid #000;
+    
+}

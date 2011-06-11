@@ -8,25 +8,12 @@ class RequirementController extends Controller
 	 */
 	public $layout='//layouts/column1';
         
-	public $status = array (0 => 'New',
-                                1 => 'Accepted',
-                                2 => 'Rejected',
-                                3 => 'Revised');
-        
-	public $statusImage = array (0 => '<img src="/images/icon-new.png"      alt="New"      title="New"/>',
-                                     1 => '<img src="/images/icon-accepted.png" alt="Accepted" title="Accepted"/>',
-                                     2 => '<img src="/images/icon-rejected.png" alt="Rejected" title="Rejected"/>',
-                                     3 => '<img src="/images/icon-revised.png"  alt="Revised"  title="Revised"/>');
-
-
 	/**
 	 * @return array action filters
 	 */
 	public function filters()
 	{
-		return array(
-			'accessControl', // perform access control for CRUD operations
-		);
+		return array('accessControl');
 	}
 
 	/**
@@ -61,9 +48,7 @@ class RequirementController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+		$this->render('view',array('model'=>$this->loadModel($id)));
 	}
 
 	public function actionViewBox($id)
@@ -85,13 +70,14 @@ class RequirementController extends Controller
 		if(isset($_POST['Requirement']))
 		{
 			$model->attributes=$_POST['Requirement'];
+                        
 			if($model->save())
+                        {
 				$this->redirect(array('view','id'=>$model->id));
+                        }
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		$this->render('create',array('model'=>$model));
 	}
 
 	/**
@@ -109,13 +95,14 @@ class RequirementController extends Controller
 		if(isset($_POST['Requirement']))
 		{
 			$model->attributes=$_POST['Requirement'];
+                        
 			if($model->save())
+                        {
 				$this->redirect(array('view','id'=>$model->id));
+                        }
 		}
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+		$this->render('update',array('model'=>$model));
 	}
 
 	/**
@@ -132,7 +119,9 @@ class RequirementController extends Controller
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
+                        {
 				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+                        }
 		}
 		else
                 {
@@ -147,9 +136,8 @@ class RequirementController extends Controller
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('Requirement');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+                
+		$this->render('index',array('dataProvider'=>$dataProvider));
 	}
 
 	/**
@@ -158,13 +146,14 @@ class RequirementController extends Controller
 	public function actionAdmin()
 	{
 		$model=new Requirement('search');
-		$model->unsetAttributes();  // clear any default values
+		$model->unsetAttributes();
+                
 		if(isset($_GET['Requirement']))
+                {
 			$model->attributes=$_GET['Requirement'];
+                }
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+		$this->render('admin',array('model'=>$model));
 	}
 
 	/**
@@ -175,8 +164,12 @@ class RequirementController extends Controller
 	public function loadModel($id)
 	{
 		$model=Requirement::model()->findByPk((int)$id);
+                
 		if($model===null)
+                {
 			throw new CHttpException(404,'The requested page does not exist.');
+                }
+                
 		return $model;
 	}
 

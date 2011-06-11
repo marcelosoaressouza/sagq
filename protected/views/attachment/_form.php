@@ -13,7 +13,7 @@ $form=$this->beginWidget('CActiveForm', array('action'=> '/attachment/create/'.$
 	<?php echo $form->errorSummary($model); ?>
 
         <div class="row">
-                <?php echo $form->labelEx($model,'requirement_id'); ?><br/>
+                <?php echo $form->labelEx($model,'requirement_id'); ?>
                 <?php
                     echo '&nbsp;';
                     echo Requirement::model()->findByPk($_GET['id'])->desc;
@@ -48,7 +48,7 @@ $form=$this->beginWidget('CActiveForm', array('action'=> '/attachment/create/'.$
         </div>
 
 	<div class="row buttons">
-            <?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('sagq', 'Create') : Yii::t('sagq', 'Save')); ?>
+            <?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('sagq', 'Create') : Yii::t('sagq', 'Save'), array("class"=>"submit-button")); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -7,25 +7,13 @@ class ProcessController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column1';
-        
-	public $status = array (0 => 'New',
-                                1 => 'Accepted',
-                                2 => 'Rejected',
-                                3 => 'Revised');
-        
-	public $statusImage = array (0 => '<img src="/images/icon-new.png"      alt="New"      title="New"/>',
-                                     1 => '<img src="/images/icon-accepted.png" alt="Accepted" title="Accepted"/>',
-                                     2 => '<img src="/images/icon-rejected.png" alt="Rejected" title="Rejected"/>',
-                                     3 => '<img src="/images/icon-revised.png"  alt="Revised"  title="Revised"/>');
 
         /**
 	 * @return array action filters
 	 */
 	public function filters()
 	{
-		return array(
-			'accessControl', // perform access control for CRUD operations
-		);
+		return array('accessControl');
 	}
 
 	/**
@@ -60,9 +48,7 @@ class ProcessController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+		$this->render('view',array('model'=>$this->loadModel($id),));
 	}
 
 	public function actionFlowChart($id)
@@ -91,11 +77,13 @@ class ProcessController extends Controller
                         }
                         
 			if($model->save())
+                        {
 				$this->redirect(array('view','id'=>$model->id));
+                            
+                        }
 		}
 
-		$this->render('create',array('model'=>$model, 'processes' => Process::model()->findAll()
-		));
+		$this->render('create',array('model'=>$model, 'processes' => Process::model()->findAll()));
 	}
 
 	/**
@@ -107,9 +95,6 @@ class ProcessController extends Controller
 	{
 		$model=$this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
 		if(isset($_POST['Process']))
 		{
 			$model->attributes=$_POST['Process'];
@@ -117,9 +102,7 @@ class ProcessController extends Controller
 				// $this->redirect(array('view','id'=>$model->id));
 		}
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+		$this->render('update',array('model'=>$model));
 	}
 
 	/**
@@ -154,9 +137,7 @@ class ProcessController extends Controller
 		$model=new Process('search');
 		$dataProvider =  $model->searchMacroProcess();
 
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+		$this->render('index',array('dataProvider'=>$dataProvider));
 	}
 
 	/**
@@ -169,9 +150,7 @@ class ProcessController extends Controller
 		if(isset($_GET['Process']))
 			$model->attributes=$_GET['Process'];
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+		$this->render('admin',array('model'=>$model));
 	}
 
 	/**
@@ -182,8 +161,12 @@ class ProcessController extends Controller
 	public function loadModel($id)
 	{
 		$model=Process::model()->findByPk((int)$id);
+                
 		if($model===null)
+                {
 			throw new CHttpException(404,'The requested page does not exist.');
+                }
+                
 		return $model;
 	}
 

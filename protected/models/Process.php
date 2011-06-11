@@ -8,7 +8,7 @@
  * @property string $title
  * @property string $desc
  * @property integer $status
- * @property timestamp $created
+ * @property datetime $created
  * @property timestamp $updated
  * @property integer $process_id
  * @property integer $user_id
@@ -44,6 +44,7 @@ class Process extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('title, desc, status, created, updated, user_id', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
 			array('title', 'safe'),
 			array('desc', 'safe'),
@@ -61,12 +62,10 @@ class Process extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
-			'requirements' => array(self::HAS_MANY, 'Requirement', 'process_id'),
-			'processes'    => array(self::HAS_MANY, 'Process'    , 'process_id'),
-                        'author'       => array(self::BELONGS_TO, 'User'     , 'user_id')
+			'requirements' => array(self::HAS_MANY  , 'Requirement', 'process_id'),
+			'processes'    => array(self::HAS_MANY  , 'Process'    , 'process_id'),
+                        'author'       => array(self::BELONGS_TO, 'User'       , 'user_id')
                     
 		);
 	}
@@ -77,7 +76,7 @@ class Process extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id'     => 'ID',
+			'id'         => 'ID',
 			'title'      => Yii::t('sagq', 'Title'),
 			'desc'       => Yii::t('sagq', 'Description'),
 			'status'     => Yii::t('sagq', 'Status'),
@@ -96,29 +95,34 @@ class Process extends CActiveRecord
 	{
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('title',$this->title,true);
-		$criteria->compare('desc',$this->desc,true);
-		$criteria->compare('status',$this->status);
-		$criteria->compare('created',$this->created);
-		$criteria->compare('updated',$this->updated);
-		$criteria->compare('process_id',$this->process_id);
-		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('id'         ,$this->id   ,true);
+		$criteria->compare('title'      ,$this->title,true);
+		$criteria->compare('desc'       ,$this->desc ,true);
+		$criteria->compare('status'     ,$this->status);
+		$criteria->compare('created'    ,$this->created);
+		$criteria->compare('updated'    ,$this->updated);
+		$criteria->compare('process_id' ,$this->process_id);
+		$criteria->compare('user_id'    ,$this->user_id);
 
 		return new CActiveDataProvider(get_class($this), array('criteria'=>$criteria,));
 	}
 
+        /*
+         * Get only Macro Process, process without process_id (null)
+         * return CActiveDataProvider
+         */
 	public function searchMacroProcess()
 	{
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('title',$this->title,true);
-		$criteria->compare('desc',$this->desc,true);
-		$criteria->compare('status',$this->status);
+		$criteria->compare('id'     ,$this->id,true);
+		$criteria->compare('title'  ,$this->title,true);
+		$criteria->compare('desc'   ,$this->desc,true);
+		$criteria->compare('status' ,$this->status);
 		$criteria->compare('created',$this->status);
 		$criteria->compare('updated',$this->status);
 		$criteria->compare('user_id',$this->user_id);
+                
 		$criteria->condition = ' process_id IS NULL ';
                 
                 if(!isSet($_GET['Process_sort']) || isSet($_GET['Process_page']))

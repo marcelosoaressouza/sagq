@@ -1,3 +1,5 @@
+<!-- begin of _form.php -->
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array('id'=>'process-form', 'enableAjaxValidation'=>false,)); ?>
@@ -31,12 +33,19 @@
 		<?php echo $form->error($model,'status'); ?>
 	</div>
 
-        <?php if (($model->isNewRecord) && (count($processes) > 0)) { ?>
+        <?php
+            if (($model->isNewRecord) && (count($processes) > 0))
+            {
+        ?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'process_id'); ?>
 		<?php
                     $processes = CHtml::listData($processes, 'id', 'title');
-                    $processes [0] = Yii::t('sagq', 'Macro Process');
+                    array_unshift($processes, Yii::t('sagq', 'Macro Process'));
+                    if (!empty($_GET['id']))
+                    {
+                        $model->process_id = $_GET['id'];
+                    }
                  ?>
 		<?php echo CHtml::activeDropDownList($model, 'process_id', $processes);?>
 		<?php echo $form->error($model,'process_id'); ?>
@@ -55,9 +64,11 @@
         </div>
                 
 	<div class="row buttons">
-            <?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('sagq', 'Create') : Yii::t('sagq', 'Save')); ?>
+            <?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('sagq', 'Create') : Yii::t('sagq', 'Save'), array("class"=>"submit-button")); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
 
-</div><!-- form -->
+</div>
+
+<!-- end of _form.php -->

@@ -38,9 +38,14 @@
                 <?php echo $form->hiddenField($model, 'created',  $data);?>
                 <?php echo $form->error($model,'created'); ?>
         </div>
-
+        
+        <div class="row">
+                <?php echo $form->hiddenField($model, 'updated', array( 'value' => date('Y-m-d H:i:s')));?>
+                <?php echo $form->error($model,'updated'); ?>
+        </div>
+        
 	<div class="row buttons">
-            <?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('sagq', 'Create') : Yii::t('sagq', 'Save')); ?>
+            <?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('sagq', 'Create') : Yii::t('sagq', 'Save'), array("class"=>"submit-button")); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
