@@ -61,5 +61,6 @@ return array (
   'No Attachments' => 'Sem Anexo(s)',
   'File' => 'Arquivo',
   'Has' => 'Possue',
+  'Father Process' => 'Processo Pai',
 );
 

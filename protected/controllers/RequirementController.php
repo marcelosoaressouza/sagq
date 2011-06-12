@@ -126,7 +126,7 @@ class RequirementController extends Controller
 		else
                 {
 			$this->loadModel($id)->delete();
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
+			$this->redirect(array('/process/index'));
                 }
 	}
 

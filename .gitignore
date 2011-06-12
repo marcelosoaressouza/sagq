@@ -8,3 +8,5 @@ protected/runtime/**/*
 upload
 upload/*
 upload/**/*
+protected/yiic
+protected/data/testdrive.db

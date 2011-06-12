@@ -17,12 +17,10 @@
         
         <script type="text/javascript">
             tinyMCE.init({ mode : "textareas",
-			   language : "en",
+			   language : "pt",
 	                   theme : "advanced",
                            theme_advanced_toolbar_location : "top",
-                           plugins: "jbimages,save",
-                           theme_advanced_buttons4: "jbimages",
-                           relative_urls : false});
+                         });
         </script>
         
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
