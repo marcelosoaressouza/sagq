@@ -19,7 +19,7 @@ return array (
   'License'           => 'Licença',
   'Fields with'       => 'Campos com',
   'are required'      => 'são obrigatórios',
-  'Create'            => 'Criar',
+  'Create'            => 'Adicionar',
   'Save'              => 'Salvar',
   'Update'            => 'Editar',
   'Delete'            => 'Apagar',
@@ -62,5 +62,8 @@ return array (
   'File' => 'Arquivo',
   'Has' => 'Possue',
   'Father Process' => 'Processo Pai',
+  'Chose one' => 'Escolha um',
+  'Old' => 'Antigo',
+  'New' => 'Novo',
 );
 

@@ -20,7 +20,7 @@
 		array('name' => 'status', 'value' => $this->status[$model->status]),
 		array('name' => 'created', 'value' => date("d-m-Y H:i", strtotime($model->created))),
 		array('name' => 'updated', 'value' => date("d-m-Y H:i", strtotime($model->updated))),
-		array('name' => Yii::t('sagq', 'Father Process'), 'value' => $father_process->title, 'visible'=>$model->process_id !== null),
+		array('name' => Yii::t('sagq', 'Father Process'), 'value' => CHtml::link(CHtml::encode($father_process->title), array('/process/view','id'=>$model->process_id)), 'type'=>'raw',  'visible'=>$model->process_id !== null),
 
         ),
 )); ?>

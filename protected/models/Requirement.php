@@ -9,10 +9,9 @@
  * @property integer   $status
  * @property datetime  $created
  * @property timestamp $updated
- * @property string    $process_id
- *
+  *
  * The followings are the available model relations:
- * @property Process $process
+ * @property Process_Requirement $process
  */
 class Requirement extends CActiveRecord
 {
@@ -41,15 +40,13 @@ class Requirement extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('process_id, status, created, updated, process_id', 'required'),
+			array('status, created, updated', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
-			array('process_id', 'length', 'max'=>11),
-			array('process_id', 'safe'),
 			array('desc', 'safe'),
 			array('status', 'safe'),
 			array('created', 'safe'),
 			array('updated', 'safe'),
-			array('id, process_id, desc, status, created, updated', 'safe', 'on'=>'search'),
+			array('id, desc, status, created, updated', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,7 +57,7 @@ class Requirement extends CActiveRecord
 	{
 		return array(
                     'attachments' => array(self::HAS_MANY  , 'Attachment', 'requirement_id'),
-                    'process'     => array(self::BELONGS_TO, 'Process'   , 'process_id'),
+                    'processes'   => array(self::MANY_MANY,  'Process'   , 'process_requirement(requirement_id, process_id)'),
 		);
 	}
 
@@ -75,7 +72,6 @@ class Requirement extends CActiveRecord
 			'status'     => Yii::t('sagq', 'Status'),
 			'created'    => Yii::t('sagq', 'Created'),
 			'updated'    => Yii::t('sagq', 'Updated'),
-			'process_id' => Yii::t('sagq', 'Process'),
 		);
 	}
 
@@ -87,15 +83,12 @@ class Requirement extends CActiveRecord
 	{
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('desc',$this->desc,true);
-		$criteria->compare('status',$this->status);
+		$criteria->compare('id'     ,$this->id,true);
+		$criteria->compare('desc'   ,$this->desc,true);
+		$criteria->compare('status' ,$this->status);
 		$criteria->compare('created',$this->created);
 		$criteria->compare('updated',$this->updated);
-		$criteria->compare('process_id',$this->process_id,true);
 
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
+		return new CActiveDataProvider(get_class($this), array('criteria'=>$criteria,));
 	}
 }

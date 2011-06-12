@@ -14,7 +14,7 @@
  * @property integer $user_id
  *
  * The followings are the available model relations:
- * @property Requirement[] $requirements
+ * @property Process_Requirement[] $requirements
  * @property Process[] $processes
  */
 class Process extends CActiveRecord
@@ -63,9 +63,9 @@ class Process extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'requirements' => array(self::HAS_MANY  , 'Requirement', 'process_id'),
-			'processes'    => array(self::HAS_MANY  , 'Process'    , 'process_id'),
-                        'author'       => array(self::BELONGS_TO, 'User'       , 'user_id')
+			'requirements' => array(self::MANY_MANY  , 'Requirement', 'process_requirement(process_id, requirement_id)'),
+			'processes'    => array(self::HAS_MANY   , 'Process'    , 'process_id'),
+                        'author'       => array(self::BELONGS_TO , 'User'       , 'user_id')
                     
 		);
 	}

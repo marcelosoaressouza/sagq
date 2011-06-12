@@ -5,7 +5,6 @@ $this->widget('zii.widgets.CDetailView', array(
 		array('name' => 'status', 'value' => $this->status[$model->status]),
 		array('name' => 'desc', 'value' => $model->desc, 'type'=> 'html'),
 		array('name' => 'created', 'value' => date("d-m-Y H:i", strtotime($model->created))),
-		array('name' => 'process_id', 'value' => $model->process->title),
 
 	),
 ));

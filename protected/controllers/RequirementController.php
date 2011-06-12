@@ -62,22 +62,37 @@ class RequirementController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Requirement;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
+		$modelRequirement = new Requirement;
+                $modelProcessRequirement = new ProcessRequirement;
+                
 		if(isset($_POST['Requirement']))
 		{
-			$model->attributes=$_POST['Requirement'];
-                        
-			if($model->save())
+                        if ($_POST['requirement_id_old'] != 0)
                         {
-				$this->redirect(array('view','id'=>$model->id));
+                            $modelProcessRequirement->setAttribute('process_id'    , $_GET['id']);
+                            $modelProcessRequirement->setAttribute('requirement_id', $_POST['requirement_id_old']);
+                            
+                        }
+                        else
+                        {
+                        
+                            $modelRequirement->attributes=$_POST['Requirement'];
+                        
+                            if($modelRequirement->save())
+                            {
+                                    $modelProcessRequirement->setAttribute('process_id'    , $_GET['id']);
+                                    $modelProcessRequirement->setAttribute('requirement_id', $modelRequirement->id);
+                                
+                            }
+                        }
+                        
+                        if($modelProcessRequirement->save())
+                        {
+                            $this->redirect(array('view', 'id' => $modelProcessRequirement->requirement_id));
                         }
 		}
 
-		$this->render('create',array('model'=>$model));
+		$this->render('create',array('model'=>$modelRequirement, 'allRequirements' => Requirement::model()->findAll()));
 	}
 
 	/**
@@ -87,10 +102,7 @@ class RequirementController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$model = $this->loadModel($id);
 
 		if(isset($_POST['Requirement']))
 		{
