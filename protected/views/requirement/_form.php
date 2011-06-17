@@ -93,8 +93,7 @@
 		<?php
                     if (isSet($allRequirements))
                     {
-                        $allRequirements = CHtml::listData($allRequirements, 'id', 'desc');
-                        array_unshift($allRequirements, Yii::t('sagq', 'Chose one'));
+                        $allRequirements = array(0 => Yii::t('sagq', 'Chose One')) + CHtml::listData($allRequirements, 'id', 'desc');
                         echo CHtml::dropDownList('requirement_id_old', 'requirement_id_old', $allRequirements);
                     }
                 ?>
