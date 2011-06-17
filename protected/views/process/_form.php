@@ -40,8 +40,8 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'process_id'); ?>
 		<?php
-                    $processes = CHtml::listData($processes, 'id', 'title');
-                    array_unshift($processes, Yii::t('sagq', 'Macro Process'));
+                    $processes = array(0 => Yii::t('sagq', 'Macro Process')) + CHtml::listData($processes, 'id', 'title');
+                    
                     if (!empty($_GET['id']))
                     {
                         $model->process_id = $_GET['id'];

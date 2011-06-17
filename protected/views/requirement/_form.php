@@ -61,6 +61,14 @@
 		<?php echo $form->textArea($model,'desc',array('rows'=>16, 'cols'=>64)); ?>
 		<?php echo $form->error($model,'desc'); ?>
             </div>
+            
+	<div class="row">
+		<?php echo $form->labelEx($model,'user_id'); ?><br/>
+                <?php echo '&nbsp;'.User::model()->findByPk(Yii::app()->user->id)->getAttribute('username'); ?>
+                <?php $author = $model->isNewRecord ? array('value' => Yii::app()->user->id) : array('value' => $model->getAttribute('user_id'));?>
+		<?php echo $form->hiddenField($model, 'user_id',  $author);?>
+		<?php echo $form->error($model,'user_id'); ?>
+	</div>
 
             <div class="row">
 		<?php echo $form->labelEx($model,'status'); ?>

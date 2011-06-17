@@ -54,7 +54,8 @@ class User extends CActiveRecord
 	 */
 	public function relations()
 	{
-		return array('processes' => array(self::HAS_MANY, 'Process', 'user_id'));
+		return array('processes'    => array(self::HAS_MANY, 'Process'    , 'user_id'));
+		return array('requirements' => array(self::HAS_MANY, 'Requirement', 'user_id'));
 	}
 
 	/**
