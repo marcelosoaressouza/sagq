@@ -62,7 +62,7 @@ return array (
   'File' => 'Arquivo',
   'Has' => 'Possue',
   'Father Process' => 'Processo Pai',
-  'Chose one' => 'Escolha um',
+  'Choose one' => 'Escolha um',
   'Old' => 'Antigo',
   'New' => 'Novo',
 );

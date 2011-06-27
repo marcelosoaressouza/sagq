@@ -29,7 +29,7 @@
  * </ol>
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CCaptchaAction.php 3124 2011-03-25 15:48:05Z qiang.xue $
+ * @version $Id: CCaptchaAction.php 3326 2011-06-27 11:13:10Z mdomba $
  * @package system.web.widgets.captcha
  * @since 1.0
  */
@@ -139,7 +139,7 @@ class CCaptchaAction extends CAction
 
 	/**
 	 * Gets the verification code.
-	 * @param string $regenerate whether the verification code should be regenerated.
+	 * @param boolean $regenerate whether the verification code should be regenerated.
 	 * @return string the verification code.
 	 */
 	public function getVerifyCode($regenerate=false)
@@ -162,7 +162,7 @@ class CCaptchaAction extends CAction
 	 * Validates the input to see if it matches the generated code.
 	 * @param string $input user input
 	 * @param boolean $caseSensitive whether the comparison should be case-sensitive
-	 * @return whether the input is valid
+	 * @return boolean whether the input is valid
 	 */
 	public function validate($input,$caseSensitive)
 	{
